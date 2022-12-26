@@ -1,3 +1,9 @@
+let computerSelection;
+let playerSelection;
+let playerScore = 0;
+let computerScore = 0;
+
+
 
 //Random RockPaperScissors
 function getComputerChoice(){
@@ -14,16 +20,30 @@ function playRound(playerSelection, computerSelection){
         Scissors: {weakTo: 'Rock', strongTo: 'Paper'}
     }
     if (weapons[playerSelection].strongTo == computerSelection){
+        playerScore++;
         return "You Won!"; 
     }
     else if (weapons[playerSelection].weakTo == computerSelection){
+        computerScore++;
         return "You Lost!";
     }
     else return "It's a tie!"
 }
 
-const playerSelection = "roCk";
-console.log(playerSelection);
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playRound(playerSelection,computerSelection));
+//Original Game (5 ROUNDS)
+function game(){
+    for (let i = 0; i < 5; i++){
+        playerSelection = prompt("Rock, Paper or Scissors?");
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    if (playerScore > computerScore){
+        console.log("You Are The Winner! Congratulations!")
+    }
+    else if (playerScore < computerScore){
+        console.log("The Computer Is The Winner! I am sorry!")    
+    }
+    else console.log("The Game Is A Tie!!")
+}
+
+game();
