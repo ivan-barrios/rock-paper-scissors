@@ -1,19 +1,18 @@
-let computerSelection;
-let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let roundWinner = '';
 
 
-
-//Random RockPaperScissors
+//Random RockPaperScissors for computer
 function getComputerChoice(){
     const possibleAnswers = ["Rock", "Paper", "Scissors"];
     return possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)];
 }
 
-//Plays ONE round
+
+
+//PROCESSES Selections
 function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
     const weapons = {
         Rock: {weakTo: 'Paper', strongTo:'Scissors'},
         Paper: {weakTo: 'Scissors', strongTo: 'Rock'},
@@ -21,45 +20,50 @@ function playRound(playerSelection, computerSelection){
     }
     if (weapons[playerSelection].strongTo == computerSelection){
         playerScore++;
-        console.log("Yoy won!"); //return "You Won!";
+        return 'Player';
     }
     else if (weapons[playerSelection].weakTo == computerSelection){
         computerScore++;
-        console.log("Yoy lost!")//return "You Lost!";
+        return 'Computer'
     }
-    else console.log("It's a tie")//return "It's a tie!"
+    else return "Tie";
 }
 
-//Original Game (5 ROUNDS)
-function game(){
-    for (let i = 0; i < 5; i++){
-        playerSelection = prompt("Rock, Paper or Scissors?");
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    if (playerScore > computerScore){
-        console.log("You Are The Winner! Congratulations!")
-    }
-    else if (playerScore < computerScore){
-        console.log("The Computer Is The Winner! I am sorry!")    
-    }
-    else console.log("The Game Is A Tie!!")
+
+
+//variables for the display
+const rockBtn = document.getElementById('rockBtn');
+const paperBtn = document.getElementById('paperBtn');
+const scissorsBtn = document.getElementById('scissorsBtn');
+const roundMessage = document.getElementById('roundMessage');
+const playerScoreMessage = document.getElementById('playerScoreMessage');
+const computerScoreMessage = document.getElementById('computerScoreMessage');
+//EventListeners for buttons
+rockBtn.addEventListener('click', () => weaponSelected('Rock'));
+paperBtn.addEventListener('click', () => weaponSelected('Paper'));
+scissorsBtn.addEventListener('click', () => weaponSelected('Scissors'));
+
+
+
+//Processes Round
+function weaponSelected(playerSelection){
+    computerSelection = getComputerChoice();
+    let roundWinner = playRound(playerSelection, computerSelection);
+    updateScoreMessages(roundWinner, playerSelection, computerSelection);
 }
 
-computerSelection = getComputerChoice();
 
-
-const rockbtn = document.querySelector('.rockbtn');
-rockbtn.addEventListener("click", function (){
-    playRound("Rock", computerSelection);
-});
-
-const paperbtn = document.querySelector('.paperbtn');
-paperbtn.addEventListener("click", function (){
-    playRound("Paper", computerSelection);
-});
-
-const scissorsbtn = document.querySelector('.scissorsbtn');
-scissorsbtn.addEventListener("click", function (){
-    playRound("Scissors", computerSelection);
-});
+//Updates Score Messages
+function updateScoreMessages(roundWinner,playerSelection, computerSelection){
+    if (roundWinner === "Player") {
+        roundMessage.textContent = `You win, ${playerSelection}
+        is stronger than ${computerSelection}`;
+        playerScoreMessage.textContent = playerScore;
+    }
+    else if (roundWinner === "Computer") {
+        roundMessage.textContent = `Computer wins,
+        ${computerSelection} is stronger than ${playerSelection}`;
+        computerScoreMessage.textContent = computerScore;
+    }
+    else roundMessage.textContent = `It's a tie!`
+}
