@@ -35,6 +35,7 @@ function playRound(playerSelection, computerSelection){
 const rockBtn = document.getElementById('rockBtn');
 const paperBtn = document.getElementById('paperBtn');
 const scissorsBtn = document.getElementById('scissorsBtn');
+const playAgainBtn = document.getElementById('playAgainBtn');
 const roundMessage = document.getElementById('roundMessage');
 const playerScoreMessage = document.getElementById('playerScoreMessage');
 const computerScoreMessage = document.getElementById('computerScoreMessage');
@@ -42,11 +43,15 @@ const computerScoreMessage = document.getElementById('computerScoreMessage');
 rockBtn.addEventListener('click', () => weaponSelected('Rock'));
 paperBtn.addEventListener('click', () => weaponSelected('Paper'));
 scissorsBtn.addEventListener('click', () => weaponSelected('Scissors'));
+playAgainBtn.addEventListener('click', () => resetGame());
 
 
 
 //Processes Round
 function weaponSelected(playerSelection){
+    if (gameFinished()){
+        return;
+    }
     computerSelection = getComputerChoice();
     let roundWinner = playRound(playerSelection, computerSelection);
     updateScoreMessages(roundWinner, playerSelection, computerSelection);
@@ -66,4 +71,27 @@ function updateScoreMessages(roundWinner,playerSelection, computerSelection){
         computerScoreMessage.textContent = computerScore;
     }
     else roundMessage.textContent = `It's a tie!`
+    
+    if (playerScore === 5){
+        roundMessage.textContent = "YOU WON!";
+    }
+    else if (computerScore === 5){
+        roundMessage.textContent = "YOU LOST!"
+    }
+}
+
+
+
+function gameFinished(){
+    return playerScore === 5 || computerScore === 5;
+}
+
+
+
+function resetGame(){
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreMessage.textContent = playerScore;
+    computerScoreMessage.textContent = computerScore;
+    roundMessage.textContent = 'Choose a weapon';
 }
