@@ -21,13 +21,13 @@ function playRound(playerSelection, computerSelection){
     }
     if (weapons[playerSelection].strongTo == computerSelection){
         playerScore++;
-        return "You Won!"; 
+        console.log("Yoy won!"); //return "You Won!";
     }
     else if (weapons[playerSelection].weakTo == computerSelection){
         computerScore++;
-        return "You Lost!";
+        console.log("Yoy lost!")//return "You Lost!";
     }
-    else return "It's a tie!"
+    else console.log("It's a tie")//return "It's a tie!"
 }
 
 //Original Game (5 ROUNDS)
@@ -46,4 +46,20 @@ function game(){
     else console.log("The Game Is A Tie!!")
 }
 
-game();
+computerSelection = getComputerChoice();
+
+
+const rockbtn = document.querySelector('.rockbtn');
+rockbtn.addEventListener("click", function (){
+    playRound("Rock", computerSelection);
+});
+
+const paperbtn = document.querySelector('.paperbtn');
+paperbtn.addEventListener("click", function (){
+    playRound("Paper", computerSelection);
+});
+
+const scissorsbtn = document.querySelector('.scissorsbtn');
+scissorsbtn.addEventListener("click", function (){
+    playRound("Scissors", computerSelection);
+});
