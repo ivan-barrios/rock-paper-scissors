@@ -9,25 +9,28 @@
 </head>
 <body>
     <h1 class="title">Rock, Paper or Scissors?</h1>
-    <div class="results">
-        <div id="roundMessage">Choose a weapon</div>
-        <div class="scoreContainer">
-            <div class="playerContainer">
-                <div>Player</div>
-                <div id="playerScoreMessage">0</div>
+    <div class="mainContainer">
+        <div class="results">
+            <div class="scoreContainer">
+                <div class="playerContainer">
+                    <div>Player</div>
+                    <div id="playerScoreMessage">0</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="computerContainer">
+                    <div>Computer</div>
+                    <div id="computerScoreMessage">0</div>
+                </div>
             </div>
-            <div class="computerContainer">
-                <div>Computer</div>
-                <div id="computerScoreMessage">0</div>
-            </div>
+            <div id="roundMessage">Choose a weapon</div>
         </div>
+        <div class="btnContainer">
+            <button class="weaponBtn" id="rockBtn">Rock</button>
+            <button class="weaponBtn" id="paperBtn">Paper</button>
+            <button class="weaponBtn" id="scissorsBtn">Scissors</button>
+        </div>
+        <button id="playAgainBtn">Play Again</button>
     </div>
-    <div>
-        <button id="rockBtn">Rock</button>
-        <button id="paperBtn">Paper</button>
-        <button id="scissorsBtn">Scissors</button>
-    </div>
-    <button id="playAgainBtn">Play Again</button>
     <script src="script.js"></script>
 </body>
 </html>

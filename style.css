@@ -9,30 +9,72 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 70px;
+    font-size: 3.5em;
 }
 
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 
 .results{
-    background-color: black;
+    width: 100%;
+    height:22em;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
 }
 
 #roundMessage{
-    background-color: green;
+    font-size: 2.5em;
+    text-align: center;
+    width: 100%;
+    height: 100px;
 }
 
 .scoreContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .playerContainer{
-    background-color: red;
+    font-size: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.vs{
+    font-size: 2.5em;
 }
 
 .computerContainer{
-    background-color: blue;
+    font-size: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnContainer{
+    width: 80%;
+    height: 20em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.weaponBtn{
+    width: 15em;
+    height: 15em;
+}
+
+#playAgainBtn{
+    width: 10em;
+    height: 10em;
 }
